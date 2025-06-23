@@ -1,5 +1,10 @@
 module PhyloPlot
 
-# Write your package code here.
+# dependencies
+using Makie
+using Phylo
 
+include("util.jl")
+
+export subtreesizes
 end
