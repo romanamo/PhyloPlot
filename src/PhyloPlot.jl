@@ -8,15 +8,17 @@ using Phylo
 include("util.jl")
 
 # Plot types
-include("./plots/treemap.jl")
-include("./plots/hv.jl")
-include("./plots/barycentric.jl")
-include("./plots/radial.jl")
+include("treemap.jl")
+include("hv.jl")
+include("barycentric.jl")
+include("radial.jl")
+include("dendrogram.jl")
 
 export generateslicedicetreemap, drawslicedicetreemap
 export generatehvtree, drawhvtree
 export generatebarycentrictree, drawbarycentrictree
 export generateradialtree, drawradialtree
+export generatedendrogram, drawdendrogram, generateradialdendrogram, drawradialdendrogram
 
 include("plot.jl")
 
