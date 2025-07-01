@@ -8,6 +8,7 @@ function generatedendrogram(tree)
 
     for node in n
         if hasinbound(tree, node)
+            # push 
             push!(x, d[getparent(tree, node)], d[getparent(tree, node)],
                   d[node], NaN)
             push!(y, h[getparent(tree, node)], h[node], h[node], NaN)
