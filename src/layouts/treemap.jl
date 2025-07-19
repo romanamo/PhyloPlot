@@ -19,7 +19,16 @@ struct Rectangle
     height::Real
 end
 
+function getcenter(rectangle::Rectangle)
+    return [rectangle.x+(rectangle.width/2), rectangle.y+(rectangle.height/2)]
+end
+"""
+TreeMapDrawingResult
+
+$(FIELDS)
+"""
 struct TreeMapDrawingResult <: AbstractDrawingResult
+    "mapping from node to rectangle"
     rects::Dict{Any, Rectangle}
 end
 

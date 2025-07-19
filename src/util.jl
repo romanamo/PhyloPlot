@@ -3,7 +3,7 @@ module Util
 using Phylo
 using DocStringExtensions
 
-export subtreesizes
+export subtreesizes, tocartesian, adjust
 
 """
 $(SIGNATURES)
@@ -23,6 +23,9 @@ function subtreesizes(tree, node, leaves=Dict())
     end
     return leaves
 end
+
+tocartesian(r, angle) = [ r*cos(angle), r*sin(angle)]
+adjust(tree, y) = 2*pi*y/nleaves(tree)
 
 end
 

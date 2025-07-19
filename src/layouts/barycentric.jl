@@ -1,5 +1,13 @@
 using Phylo
+using DocStringExtensions
 
+"""
+$(TYPEDSIGNATURES)
+
+Produces a barycentric layout, where leaves are fixed on a circle and 
+internal nodes are placed inside the circle. Their position is determined 
+by calculating their barycenter to its neighbors.
+"""
 function layoutbarycentric(tree::Phylo.NamedTree)::DrawingResult
     coefficient = Dict()
     offset = Dict()
@@ -7,6 +15,7 @@ function layoutbarycentric(tree::Phylo.NamedTree)::DrawingResult
     coords = Dict()
     total= float(nleaves(tree))
     current = 0.
+    labels = Dict()
 
     function layoutbarypostorder(node)
         sortcriteria(child) = getlength(tree, getbranch(tree, node, child))+getheight(tree, child)
@@ -21,6 +30,7 @@ function layoutbarycentric(tree::Phylo.NamedTree)::DrawingResult
             segment = 2*pi*current/total
             offset[node] = [cos(segment), sin(segment)]
             current += 1
+            labels[node] = LabelInfo(offset[node], segment)
         else
             # place nodes in barycenter of neighbors
             s = 0.0
@@ -61,5 +71,5 @@ function layoutbarycentric(tree::Phylo.NamedTree)::DrawingResult
     layoutbarypostorder(getroot(tree))
     layoutbarypreorder(getroot(tree))
 
-    return DrawingResult(coords)
+    return DrawingResult(coords, labels)
 end

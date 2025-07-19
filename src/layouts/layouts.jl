@@ -1,17 +1,28 @@
 module Layouts
 
-    export AbstractDrawingResult, DrawingResult
-    export layouthv, layoutclassicdendrogram, layoutslicedicetreemap, layoutbarycentric, layoutradial
+export AbstractDrawingResult, DrawingResult
+export layouthv, layoutclassicdendrogram, layoutslicedicetreemap, layoutbarycentric, layoutradial
 
-    abstract type AbstractDrawingResult end
+export getcenter
 
-    struct DrawingResult <: AbstractDrawingResult
-        coords::Dict{Any, Vector{Real}}
-    end
+abstract type AbstractDrawingResult end
 
-    include("barycentric.jl")
-    include("dendrogram.jl")
-    include("hv.jl")
-    include("radial.jl")
-    include("treemap.jl")
+struct LabelInfo
+    coords::Vector{Real}
+    rotation::Real
+end
+
+struct DrawingResult <: AbstractDrawingResult
+    "node coordinates"
+    coords::Dict{Any, Vector{Real}}
+    "label coordinates"
+    labels::Dict{Any, LabelInfo}
+end
+
+include("barycentric.jl")
+include("dendrogram.jl")
+include("hv.jl")
+include("radial.jl")
+include("treemap.jl")
+
 end

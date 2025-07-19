@@ -11,14 +11,16 @@ and smaller subtrees are drawn in down (y-direction).
 """
 function layouthv(tree::Phylo.NamedTree)::DrawingResult
     coords = Dict()
+    labels = Dict()
     leaves = subtreesizes(tree, getroot(tree))
 
     function layoutnode(node, ix::Int=0, iy::Int=0)
         children = getchildren(tree, node)
         coords[node] = [ix, -iy]
-
+        
         if isleaf(tree, node)
             # if node is leaf, subtree has a width of 0
+            labels[node] = LabelInfo([ix, -iy-0.2], 3*pi/2)
             return 0
         elseif length(children) == 1
             # if node has exactly one child, draw subtree in x direction
@@ -39,5 +41,5 @@ function layouthv(tree::Phylo.NamedTree)::DrawingResult
     end
     layoutnode(getroot(tree))
 
-    return DrawingResult(coords)
+    return DrawingResult(coords, labels)
 end

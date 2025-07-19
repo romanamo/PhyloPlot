@@ -13,7 +13,9 @@ function layoutclassicdendrogram(tree::Phylo.NamedTree)::DrawingResult
     ys = getorders(tree)
 
     coords = Dict(node => [xs[node], ys[node]] for node in getnodes(tree))
-    return DrawingResult(coords)
+    labels = Dict(leaf => LabelInfo([xs[leaf], ys[leaf]], 0) for leaf in getleaves(tree))
+    
+    return DrawingResult(coords, labels)
 end
 
 """
