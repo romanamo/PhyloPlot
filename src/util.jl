@@ -1,5 +1,9 @@
+module Util
+    
 using Phylo
 using DocStringExtensions
+
+export subtreesizes
 
 """
 $(SIGNATURES)
@@ -20,18 +24,6 @@ function subtreesizes(tree, node, leaves=Dict())
     return leaves
 end
 
-"""
-Rectangle
-
-$(FIELDS)
-"""
-struct Rectangle
-    "upper left corner x-value"
-    x::Real
-    "upper left corner y-value"
-    y::Real
-    "rectangle width"
-    width::Real
-    "rectangle height"
-    height::Real
 end
+
+

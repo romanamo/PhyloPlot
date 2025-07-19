@@ -1,28 +1,10 @@
 module PhyloPlot
 
-# dependencies
-using Phylo
+export Util, Layouts, Recipes
 
-# utilities
 
 include("util.jl")
-
-# Plot types
-include("treemap.jl")
-include("hv.jl")
-include("barycentric.jl")
-include("radial.jl")
-include("dendrogram.jl")
-
-export generateslicedicetreemap, drawslicedicetreemap
-export generatehvtree, drawhvtree
-export generatebarycentrictree, drawbarycentrictree
-export generateradialtree, drawradialtree
-export generatedendrogram, drawdendrogram, generateradialdendrogram, drawradialdendrogram
-
-include("plot.jl")
-
-export Rectangle
-
+include("layouts/layouts.jl")
+include("recipes/recipes.jl")
 
 end
